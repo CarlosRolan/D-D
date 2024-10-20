@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Juego de Ajedrez en 3D</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Importar librerías de ES Modules -->
+  <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+  <!-- Vincular el archivo CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Import Map para Three.js y otros módulos -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@v0.159.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@v0.159.0/examples/jsm/",
+        "GLTFLoader": "https://unpkg.com/three@v0.159.0/examples/jsm/loaders/GLTFLoader.js"
+      }
+    }
+  </script>
+
+
+</head>
+
+<body>
+
+  <!-- UI Container para los controles -->
+  <div class="uiContainer">
+    <button id="moveBtn">Mover</button>
+    <button id="makeMoveBtn" style="display: none;">Realizar movimiento</button>
+    <button id="atackBtn">Atacar</button>
+    <button id="inventoryBtn">Equipamiento</button>
+  </div>
+
+  <div class="uiContainer">
+   <span>Hello</span>
+  </div>
+
+  <!-- Importar archivo JS -->
+  <script type="module" src="js/index.js"></script>
+
+</body>
+
+</html>

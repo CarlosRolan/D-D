@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+}
+
+/* Estilos para el contenedor de los botones */
+.uiContainer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo transparente */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Estilo para los botones */
+button {
+  background-color: #4CAF50;
+  /* Verde */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
