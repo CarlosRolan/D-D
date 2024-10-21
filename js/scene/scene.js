@@ -6,23 +6,6 @@ import { light, ambientLight } from './light.js';
 import { dungeonFloor } from './dungeon.js';
 import { createGoblin } from './monster.js';
 
-// Create a new scene
-const scene = new THREE.Scene();
-
-//We create the miniatures
-//const cleric = await createCleric();
-const mage = await createMage();
-mage.move([0, 0]);
-const ranger = await createRanger();
-ranger.move([1, 0]);
-const rouge = await createRouge();
-rouge.move([2, 0]);
-const cleric = await createCleric();
-cleric.move([3, 0]);
-
-const goblin0 = await createGoblin();
-const goblin1 = await createGoblin();
-
 // Setup the renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -30,6 +13,23 @@ renderer.shadowMap.enabled = true;
 
 // Default Controls
 const basicControls = new OrbitControls(camera, renderer.domElement);
+
+// Create a new scene
+const scene = new THREE.Scene();
+//We create the miniatures
+const mage = await createMage();
+mage.moveToCell([0, 0]);
+const ranger = await createRanger();
+ranger.moveToCell([1, 0]);
+const rouge = await createRouge();
+rouge.moveToCell([2, 0]);
+const cleric = await createCleric();
+cleric.moveToCell([3, 0]);
+
+//Create the monsters
+const goblin0 = await createGoblin();
+const goblin1 = await createGoblin();
+
 
 //Adding to the scene
 const actors = new THREE.Group();
@@ -57,8 +57,6 @@ scene.add(actors);
 const turns = actors.children.length;
 
 console.log(turns);
-
-
 
 function animate() {
     basicControls.update();

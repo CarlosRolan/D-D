@@ -27,6 +27,7 @@ class Monster extends Miniature {
         this.mesh = mesh;
         const offset = 1.25;
         mesh.position.set(0 * offset, 1, 0 * offset);
+        mesh.type = "monster"
     }
 }
 

@@ -1,0 +1,9 @@
+{
+    "goblin": {
+        "name": "Trasgo",
+        "description": "Los trasgos son humanoides pequeños a los que muchos consideran poco más que una molestia. Sin embargo, pueden ser peligrosos cuando van en bandas",
+        "attack": 2,
+        "hp": 4,
+        "movement": 4
+    }
+}

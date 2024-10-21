@@ -12,6 +12,12 @@ const inventoryBtn = document.getElementById("inventoryBtn");
 let moveActionEnabled = false;
 let attackActionEnabled = false;
 
+attackBtn.addEventListener('click', ()=> {
+    if (selectedMesh != null) {
+        selectedMesh.position.x += Math.PI / 2;
+    }
+})
+
 // Función para habilitar el movimiento
 moveBtn.addEventListener('click', () => {
     restoreOriginalColor(selectedMesh);
@@ -80,7 +86,6 @@ function onMouseDown(event) {
             case "cell":
                 if (moveActionEnabled) {
                     selectedCellToMove = selectedMesh;
-
                 }
                 break;
             default:

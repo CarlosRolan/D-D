@@ -1,9 +1,0 @@
-{
-    "goblin": {
-        "name": "goblin",
-        "description": "An ugly bastard",
-        "hp": 4,
-        "attack": 2,
-        "movement": 4
-    }
-}
