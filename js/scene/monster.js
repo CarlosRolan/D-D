@@ -4,7 +4,7 @@ import { Miniature } from "./miniature.js";
 //Data for all MONSTERS
 async function getCreaturesData() {
     try {
-        const response = await fetch("../data/mosnters.json");
+        const response = await fetch("/res/data/mosnters.json");
         const json = await response.json();
         return json;
     } catch (error) {
@@ -27,7 +27,6 @@ class Monster extends Miniature {
         this.mesh = mesh;
         const offset = 1.25;
         mesh.position.set(0 * offset, 1, 0 * offset);
-        mesh.type = "monster"
     }
 }
 

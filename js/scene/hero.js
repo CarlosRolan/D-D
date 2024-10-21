@@ -5,7 +5,7 @@ const offset = 1.25; // Mismo offset que usaste para las casillas
 
 async function getHerosData() {
     try {
-        const response = await fetch("../data/heros.json");
+        const response = await fetch("/res/data/heros.json");
         const json = await response.json();
         return json;
     } catch (error) {
@@ -19,10 +19,6 @@ console.log(defaultHerosData);
 class Hero extends Miniature {
     constructor(name, description, mesh) {
         super(name, description, mesh);
-        this.mesh.type = "hero";
-        this.hp = hp;
-        this.attack = attack;
-        this.movement = movement;
     }
 
     moveToCell(pos) {
