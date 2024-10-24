@@ -2,11 +2,7 @@
     "rouge": {
         "name": "Lidda",
         "description": "Lidda es una mediana. Más pequeños que la gente, los medianos tienden a ser sigilosos, y Lidda no es una excepción. Su missión en el equipo de aventureros es encargarse de cosas complicadas, como buscar y desactivar trampas. En combate es buena si puede lanzar un ataque furtivo a sus oponentes",
-        "hp": [
-            5,
-            7,
-            9
-        ],
+        "hp": 5,
         "movement": 6,
         "armor": 2,
         "inventory": 4
@@ -14,16 +10,8 @@
     "cleric": {
         "name": "Jozan",
         "description": "Jozan es un fiel seguidor de Pelor, un poderoso dios del sol dedicado al bien y a la legalidad. Pelo espera que Jozan le sirva luchando contra malvados mounstros siempre que los encuentre. La misión de Jozan en el equipo de aventureros s proteger a sus compañeros mediante conjuros y ayudarles a matar monstruos",
-        "hp": [
-            5,
-            7,
-            9
-        ],
-        "mp": [
-            5,
-            7,
-            9
-        ],
+        "hp": 5,
+        "mp": 5,
         "movement": 5,
         "armor": 2,
         "inventory": 5
@@ -31,11 +19,7 @@
     "warrior": {
         "name": "Regdar",
         "description": "Regdar es un defensor del bien que entrega su poderosa espada a la causa de la justicia. Se aventura para acabar con el mal y para ganar habilidad y experiencia que luego pueda utilizar en su cruzada. La misión de Regdar en el equipo de aventureros es matar mounstros y proteger a sus compañeros",
-        "hp": [
-            8,
-            12,
-            15
-        ],
+        "hp": 8,
         "movement": 4,
         "armor": 2,
         "inventory": 4
@@ -43,22 +27,10 @@
     "mage": {
         "name": "Mialee",
         "description": "Mialee todavía está aprendiendo a lanzar conjuros. Su onjetivo es convertirse en una maga experta, por los que siempre está deseosa de probar su magia contra los enemigos. La misión de mialee en el equipo de aventureros consiste en usar sus poderosos conjuros para apoyar a sus compañeros y ayudarles en sus enfrentamiento contra los monstruos",
-        "hp": [
-            5,
-            7,
-            9
-        ],
-        "mp": [
-            5,
-            7,
-            9
-        ],
+        "hp": 5,
+        "mp": 5,
         "movement": 4,
-        "armor": [
-            2,
-            1,
-            0
-        ],
+        "armor": 2,
         "inventory": 5
     }
 }

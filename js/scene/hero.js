@@ -1,7 +1,7 @@
 import { getMesh } from '../utils/meshLoader.js';
 import { Miniature } from './miniature.js';
 
-const offset = 1.25; // Mismo offset que usaste para las casillas
+
 
 async function getHerosData() {
     try {
@@ -12,48 +12,49 @@ async function getHerosData() {
         console.error(error.message);
     }
 }
-const defaultHerosData = await getHerosData();
-
-console.log(defaultHerosData);
+const herosData = await getHerosData();
 
 class Hero extends Miniature {
-    constructor(name, description, mesh) {
+    constructor(heroData, mesh) {
+        const { name, description, hp, movement, armor, inventory } = heroData;
+        mesh.miniature = "hero";
         super(name, description, mesh);
+        this.maxHP = hp;
+        this.movement = movement;
+        this.armor = armor;
+        this.inventory = new Array(inventory).fill(null);
     }
 
-    moveToCell(pos) {
-        const x = pos[0];
-        const y = pos[1];
-        this.mesh.position.set(x * offset, 0, y * offset);
-    }
 
-    rotate() {
-        this.mesh.x = Math.PI / 2
-    }
+
 }
 
 async function createRouge() {
     const mesh = await getMesh("/obj/heroes/rouge.glb");
-    const rouge = new Hero("rouge", "des", mesh);
+    const rouge = new Hero(herosData.rouge, mesh);
+    console.log(rouge);
     return rouge;
 }
 
-async function createRanger() {
+async function createWarrior() {
     const mesh = await getMesh("/obj/heroes/ranger.glb");
-    const ranger = new Hero("ranger", "des", mesh);
-    return ranger;
+    const warrior = new Hero(herosData.warrior, mesh);
+    console.log(warrior);
+    return warrior;
 }
 
 async function createMage() {
     const mesh = await getMesh("/obj/heroes/mage.glb");
-    const mage = new Hero("mage", "des", mesh);
+    const mage = new Hero(herosData.mage, mesh);
+    console.log(mage);
     return mage;
 }
 
 async function createCleric() {
     const mesh = await getMesh("/obj/heroes/cleric.glb");
-    const cleric = new Hero("cleric", "des", mesh);
+    const cleric = new Hero(herosData.cleric, mesh);
+    console.log(cleric);
     return cleric;
 }
 
-export { createCleric, createMage, createRanger, createRouge };
+export { createCleric, createMage, createWarrior, createRouge };

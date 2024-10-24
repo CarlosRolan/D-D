@@ -20,7 +20,7 @@ for (let i = 0; i < tableSize; i++) {
         const xPos = i * offset;
         const zPos = j * offset;
 
-        cell.position.set(xPos, 0, -zPos); // Desfase en las filas impares
+        cell.position.set(xPos, 0, zPos); // Desfase en las filas impares
 
         // Añadir el ladrillo al grupo
         dungeonFloor.add(cell);

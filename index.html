@@ -18,10 +18,14 @@
       "imports": {
         "three": "https://unpkg.com/three@v0.159.0/build/three.module.js",
         "three/addons/": "https://unpkg.com/three@v0.159.0/examples/jsm/",
-        "GLTFLoader": "https://unpkg.com/three@v0.159.0/examples/jsm/loaders/GLTFLoader.js"
+        "GLTFLoader": "https://unpkg.com/three@v0.159.0/examples/jsm/loaders/GLTFLoader.js",
+        "OutlinePass": "https://unpkg.com/three@v0.159.0/examples/jsm/postprocessing/OutlinePass.js",
+        "EffectComposer": "https://unpkg.com/three@v0.159.0/examples/jsm/postprocessing/EffectComposer.js",
+        "RenderPass": "https://unpkg.com/three@v0.159.0/examples/jsm/postprocessing/RenderPass.js"
       }
     }
   </script>
+  
 
 
 </head>
@@ -36,8 +40,11 @@
     <button id="inventoryBtn">Equipamiento</button>
   </div>
 
-  <div class="uiContainer">
-   <span>Hello</span>
+  <!-- Botón flotante para pasar turno -->
+  <button id="endTurnBtn" class="floating-btn">Pasar turno</button>
+
+  <div class="uiContainer turnInfo">
+    <span>Hello</span>
   </div>
 
   <!-- Importar archivo JS -->
