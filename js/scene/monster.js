@@ -19,7 +19,8 @@ async function createGoblin() {
 }
 
 class Monster extends Miniature {
-    constructor({ name, description, hp, attack, movement }, mesh) {
+    constructor(monsterData, mesh) {
+        const { name, description, hp, attack, movement } = monsterData;
         super(name, description, mesh);
         this.hp = hp;
         this.attack = attack;

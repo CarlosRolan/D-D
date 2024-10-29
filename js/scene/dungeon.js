@@ -1,33 +1,52 @@
 import * as THREE from 'three';
 import { c1, cDefault } from '../utils/materials.js';
+import { createWall } from './wall.js';
 
-const dungeonFloor = new THREE.Group();
+const offset = 1.25; // Desfase entre filas
+const tableSize = 11; // Número de filas
 
-const cellGeometry = new THREE.BoxGeometry(1, 0.2, 1);
+class Dungeon {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+        this.dungeonFloor = new THREE.Group();
 
-// Parámetros para la pared de ladrillos
-const tableSize = 11;   // Número de filas
-const offset = 1.25; // Desfase de las filas alternas
-// Crear los ladrillos y posicionarlos
-for (let i = 0; i < tableSize; i++) {
-    for (let j = 0; j < tableSize; j++) {
+        const cellGeometry = new THREE.BoxGeometry(1, 0.2, 1);
 
-        const cell = new THREE.Mesh(cellGeometry, (i == 0 && j == 0) ? c1 : cDefault);
-        cell.name = `cell`;
-        cell.cellPos = [i, j];
-        // Posición del ladrillo
-        // Añadir un pequeño espacio entre ladrillos
-        const xPos = i * offset;
-        const zPos = j * offset;
+        // Crear las celdas y las posiciona
+        for (let i = 0; i < tableSize; i++) {
+            for (let j = 0; j < tableSize; j++) {
+                const cell = new THREE.Mesh(cellGeometry, (i === 0 && j === 0) ? c1 : cDefault);
+                cell.name = `cell`;
+                cell.cellPos = [i, j];
 
-        cell.position.set(xPos, 0, zPos); // Desfase en las filas impares
+                // Posicionar cada celda
+                const xPos = j * offset;
+                const zPos = i * offset;
+                cell.position.set(xPos, 0, zPos);
 
-        // Añadir el ladrillo al grupo
-        dungeonFloor.add(cell);
+                this.dungeonFloor.add(cell);
+
+                // Añadir paredes alrededor de los bordes
+                if (i === 0) this.addExteriorWall([i, j], 'left');
+                if (i === tableSize - 1) this.addExteriorWall([i, j], 'right');
+                if (j === 0) this.addExteriorWall([i, j], 'front');
+                if (j === tableSize - 1) this.addExteriorWall([i, j], 'back');
+            }
+        }
+    }
+
+    // Función para añadir una pared en una posición específica
+    async addExteriorWall(cellPos, position) {
+        const wall = await createWall();
+        wall.putWall(cellPos, position);
+
+        this.dungeonFloor.add(wall.mesh);
     }
 }
 
-//dungeonFloor.rotation.x = -Math.PI / 2; // Rotar 90 grados en el eje X
+function createDungeon() {
+    return new Dungeon(tableSize, tableSize);
+}
 
-export { dungeonFloor }
-
+export { createDungeon };

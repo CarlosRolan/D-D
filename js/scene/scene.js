@@ -3,9 +3,10 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createCleric, createMage, createWarrior, createRouge } from './hero.js';
 import { camera } from './camera.js';
 import { light, ambientLight } from './light.js';
-import { dungeonFloor } from './dungeon.js';
+import { createDungeon } from './dungeon.js';
 import { createGoblin } from './monster.js';
 import { createDoor } from './door.js';
+import { createWall } from './wall.js';
 
 // Setup the renderer
 const renderer = new THREE.WebGLRenderer();
@@ -17,7 +18,13 @@ const basicControls = new OrbitControls(camera, renderer.domElement);
 
 // Create a new scene
 const scene = new THREE.Scene();
-//We create the miniatures
+
+//Create the objects
+const dungeon = createDungeon();
+const door1 = await createDoor();
+door1.putDoor([3, 3], "right");
+
+//We create the heros
 const mage = await createMage();
 mage.moveToCell([0, 0]);
 const ranger = await createWarrior();
@@ -32,14 +39,6 @@ const goblin0 = await createGoblin();
 goblin0.moveToCell([1, 1]);
 const goblin1 = await createGoblin();
 goblin1.moveToCell([1, 3]);
-
-//Create the doors
-const door1 = await createDoor();
-door1.putDoor([3, 3]);
-
-
-
-
 
 //Adding to the scene
 const actors = new THREE.Group();
@@ -62,7 +61,7 @@ actors.add(cleric.mesh);
 
 scene.add(light);
 scene.add(ambientLight);
-scene.add(dungeonFloor);
+scene.add(dungeon.dungeonFloor);
 scene.add(actors);
 scene.add(objects)
 

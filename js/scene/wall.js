@@ -4,26 +4,27 @@ import { Miniature } from './miniature.js';
 
 const offset = 1.25; // Desfase entre filas
 
-async function createDoor() {
-    const doorMesh = await getMesh("/obj/objects/door.glb");
-    return new Door(doorMesh);
+async function createWall() {
+    const wallMesh = await getMesh("/obj/objects/wall.glb");
+    return new Wall(wallMesh);
 }
 
-class Door extends Miniature {
-
+class Wall extends Miniature {
     constructor(mesh) {
-        super("Door", "An old cranky door", mesh);
+        super("Wall", "A cold stone wall", mesh);
     }
 
-    putDoor(cellPos, orientation) {
+    putWall(cellPos, orientation) {
         this.moveToCell(cellPos);
-
+        
         // Ajustar la rotación de la pared según la posición
         switch (orientation) {
             case 'left':
+                //wall.mesh.rotation.y = Math.PI / 2;
                 this.mesh.position.x -= offset / 2;
                 break;
             case 'right':
+                //wall.mesh.rotation.y = Math.PI / 2;
                 this.mesh.position.x += offset / 2;
                 break;
             case 'front':
@@ -39,5 +40,5 @@ class Door extends Miniature {
 }
 
 export {
-    createDoor
+    createWall
 }
