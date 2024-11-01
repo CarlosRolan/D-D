@@ -6,7 +6,7 @@ const offset = 1.25; // Desfase entre filas
 const doorMesh = await getMesh("/obj/objects/door.glb");
 
 function createDoor() {
-    return new Door(doorMesh);
+    return new Door(doorMesh.clone());
 }
 
 class Door extends Miniature {

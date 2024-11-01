@@ -5,8 +5,6 @@ import { camera } from './camera.js';
 import { light, ambientLight } from './light.js';
 import { createDungeonLvl1 } from './dungeon.js';
 import { createGoblin } from './monster.js';
-import { createDoor } from './door.js';
-import { createWall } from './wall.js';
 
 // Setup the renderer
 const renderer = new THREE.WebGLRenderer();
@@ -14,23 +12,23 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 
 // Default Controls
-const basicControls = new OrbitControls(camera, renderer.domElement);
+const cameraControls = new OrbitControls(camera, renderer.domElement);
 
 // Create a new scene
 const scene = new THREE.Scene();
 
-//Create the objects
-const dungeon = createDungeonLvl1();
+//Create the map
+const dungeon1 = createDungeonLvl1();
 
 //We create the heros
 const mage = await createMage();
-mage.moveToCell([0, 0]);
+mage.moveToCell([0, 18]);
 const ranger = await createWarrior();
-ranger.moveToCell([0, 1]);
+ranger.moveToCell([0, 19]);
 const rouge = await createRouge();
-rouge.moveToCell([0, 2]);
+rouge.moveToCell([0, 20]);
 const cleric = await createCleric();
-cleric.moveToCell([0, 3]);
+cleric.moveToCell([0, 21]);
 
 //Create the monsters
 const goblin0 = await createGoblin();
@@ -59,16 +57,14 @@ actors.add(cleric.mesh);
 
 scene.add(light);
 scene.add(ambientLight);
-scene.add(dungeon.dungeonFloor);
+scene.add(dungeon1.floor);
 scene.add(actors);
 scene.add(objects)
-
-
 //===============TURN-BASED LOGIC
 const turns = actors.children.length;
 
 function animate() {
-    basicControls.update();
+    cameraControls.update();
     renderer.render(scene, camera);
 }
 

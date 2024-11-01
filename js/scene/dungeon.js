@@ -27,10 +27,9 @@ async function loadDungeonData() {
 }
 
 class Dungeon {
-    constructor(data) {
-        this.dungeonFloor = new THREE.Group();
-
-        console.log(data);
+    constructor(data, initialPos) {
+        this.floor = new THREE.Group();
+        this.initialPos = initialPos;
 
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[i].length; j++) {
@@ -38,11 +37,15 @@ class Dungeon {
 
                 const cellData = data[i][j];
 
-                // Añadir paredes alrededor de los bordes
+                // Añadir paredes en el borde superior
                 if (i === 0) this.placeWall([i, j], 'front');
+                // Añadir paredes en el borde inferior
                 if (i === data.length - 1) this.placeWall([i, j], 'back');
+                // Añadir paredes en el borde izquierdo
                 if (j === 0) this.placeWall([i, j], 'left');
-                if (j === data.length - 1) this.placeWall([i, j], 'right');
+                // Añadir paredes en el borde derecho, comprobando el largo de cada fila
+                if (j === data[i].length - 1) this.placeWall([i, j], 'right');
+
 
                 //console.log(`${i} ${j}`);
 
@@ -77,24 +80,23 @@ class Dungeon {
                         case 20:
                             this.placeDoor([i, j], "right");
                             break;
-                        case 20:
+                        case 21:
                             this.placeDoor([i, j], "left");
                             break;
-                        case 20:
+                        case 22:
                             this.placeDoor([i, j], "front");
                             break;
-                        case 20:
+                        case 23:
                             this.placeDoor([i, j], "back");
                             break;
 
-
-
                         default:
+
                             break;
                     }
                 }
 
-                this.dungeonFloor.add(cell);
+                this.floor.add(cell);
             }
         }
 
@@ -108,13 +110,12 @@ class Dungeon {
             i === 0 && j === 0 ? c1 : (i === 0 && j === 1 ? c2 : cDefault)
         );
 
-
         cell.name = `cell`;
         cell.cellPos = [i, j];
 
         // Posicionar cada celda
-        const xPos = j * offset;
-        const zPos = i * offset;
+        const xPos = (j * offset);
+        const zPos = (i * offset);
         cell.position.set(xPos, 0, zPos);
 
         return cell;
@@ -124,35 +125,26 @@ class Dungeon {
     placeWall(cellPos, position) {
         const wall = createWall();
         wall.putWall(cellPos, position);
-        this.dungeonFloor.add(wall.mesh);
+        this.floor.add(wall.mesh);
     }
 
     placeDoor(cellPos, position) {
         const door = createDoor();
         door.putDoor(cellPos, position);
-        this.dungeonFloor.add(door.mesh);
+        this.floor.add(door.mesh);
+    }
+
+    moveFloor(x, y, z) {
+        this.floor.position.set(x, y, z);
     }
 }
 
 function createDungeonLvl1() {
-    return new Dungeon(dungeonData["1"]);
+    const dungeonA = new Dungeon(dungeonData["lvl1"]);
+
+    return dungeonA;
 }
 
 export { createDungeonLvl1 };
 
 
-//Crear una dungeon vacia solo con paredes exteriores 
-/*for (let i = 0; i < 11; i++) {
-          for (let j = 0; j < 11; j++) {
-
-              const cell = this.createCell(i, j);
-
-              this.dungeonFloor.add(cell);
-
-              // Añadir paredes alrededor de los bordes
-                if (i === 0) this.placeWall([i, j], 'left');
-                if (i === 11 - 1) this.placeWall([i, j], 'right');
-                if (j === 0) this.placeWall([i, j], 'front');
-                if (j === 11 - 1) this.placeWall([i, j], 'back');
-          }
-      }*/
