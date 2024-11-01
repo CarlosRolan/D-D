@@ -1,0 +1,19 @@
+
+0 = empty cell
+
+1 = wall
+    10 = wall right
+    11 = wall left
+    12 = wall front
+    13 = wall back
+
+2 = door
+    20 = door right
+    21 = door left
+    22 = door front
+    23 = door back
+
+3 = trap
+
+4 = monster
+    40 = goblin

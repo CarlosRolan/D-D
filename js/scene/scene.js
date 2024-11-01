@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createCleric, createMage, createWarrior, createRouge } from './hero.js';
 import { camera } from './camera.js';
 import { light, ambientLight } from './light.js';
-import { createDungeon } from './dungeon.js';
+import { createDungeonLvl1 } from './dungeon.js';
 import { createGoblin } from './monster.js';
 import { createDoor } from './door.js';
 import { createWall } from './wall.js';
@@ -20,19 +20,17 @@ const basicControls = new OrbitControls(camera, renderer.domElement);
 const scene = new THREE.Scene();
 
 //Create the objects
-const dungeon = createDungeon();
-const door1 = await createDoor();
-door1.putDoor([3, 3], "right");
+const dungeon = createDungeonLvl1();
 
 //We create the heros
 const mage = await createMage();
 mage.moveToCell([0, 0]);
 const ranger = await createWarrior();
-ranger.moveToCell([1, 0]);
+ranger.moveToCell([0, 1]);
 const rouge = await createRouge();
-rouge.moveToCell([2, 0]);
+rouge.moveToCell([0, 2]);
 const cleric = await createCleric();
-cleric.moveToCell([3, 0]);
+cleric.moveToCell([0, 3]);
 
 //Create the monsters
 const goblin0 = await createGoblin();
@@ -50,7 +48,7 @@ monsters.add(goblin0.mesh);
 monsters.add(goblin1.mesh);
 
 //We add the objects in another group
-objects.add(door1.mesh);
+//objects.add(door1.mesh);
 
 //Monsters added to the acotrs of the scene to later calculate the turns
 actors.add(monsters);

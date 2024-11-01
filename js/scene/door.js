@@ -3,9 +3,9 @@ import { getMesh } from '../utils/meshLoader.js';
 import { Miniature } from './miniature.js';
 
 const offset = 1.25; // Desfase entre filas
+const doorMesh = await getMesh("/obj/objects/door.glb");
 
-async function createDoor() {
-    const doorMesh = await getMesh("/obj/objects/door.glb");
+function createDoor() {
     return new Door(doorMesh);
 }
 

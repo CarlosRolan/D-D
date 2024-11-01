@@ -1,8 +1,6 @@
 import { getMesh } from '../utils/meshLoader.js';
 import { Miniature } from './miniature.js';
 
-
-
 async function getHerosData() {
     try {
         const response = await fetch("/res/data/heros.json");
@@ -23,10 +21,8 @@ class Hero extends Miniature {
         this.movement = movement;
         this.armor = armor;
         this.inventory = new Array(inventory).fill(null);
+        this.hasTurn = false;
     }
-
-
-
 }
 
 async function createRouge() {

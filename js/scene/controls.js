@@ -12,7 +12,7 @@ const inventoryBtn = document.getElementById("inventoryBtn");
 let moveActionEnabled = false;
 let attackActionEnabled = false;
 
-attackBtn.addEventListener('click', ()=> {
+attackBtn.addEventListener('click', () => {
     if (selectedMesh != null) {
         selectedMesh.position.x += Math.PI / 2;
     }
@@ -77,8 +77,6 @@ function onMouseDown(event) {
         // Guardar el nuevo objeto seleccionado
         selectedMesh = intersection.object;
 
-        console.log(selectedMesh);
-
         switch (selectedMesh.name) {
             case "hero":
                 console.log("Hero clicked");
@@ -87,8 +85,10 @@ function onMouseDown(event) {
                 if (moveActionEnabled) {
                     selectedCellToMove = selectedMesh;
                 }
+                console.log(selectedMesh.cellPos);
                 break;
             default:
+                console.log(selectedMesh);
                 console.log("Clicked object without a name");
                 break;
         }
