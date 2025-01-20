@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { c1, cDefault, c2 } from '../utils/materials.js';
+import { c1, cDefault, c2, fogOfWar } from '../utils/materials.js';
 import { createWall } from './wall.js';
 import { createDoor } from './door.js';
 
@@ -117,7 +117,6 @@ class Dungeon {
         const xPos = (j * offset);
         const zPos = (i * offset);
         cell.position.set(xPos, 0, zPos);
-
         return cell;
     }
 

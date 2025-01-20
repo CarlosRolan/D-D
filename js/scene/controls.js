@@ -12,37 +12,6 @@ const inventoryBtn = document.getElementById("inventoryBtn");
 let moveActionEnabled = false;
 let attackActionEnabled = false;
 
-attackBtn.addEventListener('click', () => {
-    if (selectedMesh != null) {
-        selectedMesh.position.x += Math.PI / 2;
-    }
-})
-
-// Función para habilitar el movimiento
-moveBtn.addEventListener('click', () => {
-    restoreOriginalColor(selectedMesh);
-    selectedMesh = null;
-    moveActionEnabled = true;
-    moveBtn.style.display = 'none';
-    makeMoveBtn.style.display = 'block';
-});
-
-// Función para confirmar el movimiento
-makeMoveBtn.addEventListener('click', () => {
-    if (moveActionEnabled) {
-        if (selectedCellToMove != null) {
-            moveHeroToCell(selectedMesh);  // Mover el héroe a la casilla seleccionada
-        } else {
-            alert("Necesitas selecionar la casilla primero");
-        }
-    }
-    restoreOriginalColor(selectedCellToMove);
-    selectedMesh = null;
-    selectedCellToMove = null;
-    moveActionEnabled = false;
-    makeMoveBtn.style.display = 'none';
-    moveBtn.style.display = 'block';  // Restaurar el botón original
-});
 //=============================================
 
 let selectedMesh = null;
@@ -69,13 +38,15 @@ function onMouseDown(event) {
         const intersection = intersections[0];
 
 
-        // Restaurar el color original del objeto previamente seleccionado
+        /* Restaurar el color original del objeto previamente seleccionado
         if (selectedMesh != null && selectedMesh !== intersection.object) {
             restoreOriginalColor(selectedMesh);  // Restaurar color del objeto anterior
-        }
+        }*/
 
         // Guardar el nuevo objeto seleccionado
         selectedMesh = intersection.object;
+
+        showInfoPanel(selectedMesh);
 
         switch (selectedMesh.name) {
             case "hero":
@@ -85,15 +56,15 @@ function onMouseDown(event) {
                 if (moveActionEnabled) {
                     selectedCellToMove = selectedMesh;
                 }
-                console.log(selectedMesh.cellPos);
+                break;
+            case "wall":
                 break;
             default:
-                console.log(selectedMesh);
                 console.log("Clicked object without a name");
                 break;
         }
 
-        darkenObject(selectedMesh);
+        //darkenObject(selectedMesh);
     }
 }
 
@@ -167,4 +138,11 @@ function animate() {
     requestAnimationFrame(animate);  // Continuar animando
 }
 
+function showInfoPanel(mesh) {
+    console.log(mesh);
+    let infoPanel = document.getElementById("infoPanel");
+    infoPanel.querySelector("h3").textContent = `${mesh.name || "No name"}`;
+    infoPanel.classList.toggle("hidden");
+
+}
 export { onMouseDown };
